@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="main.css"/>
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+        <script src="app.js"></script>
+        <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+    </head>
+
+    <body ng-app="mapApp">
+        <div class="container-fluid mt-5" ng-controller="mainCtrl">
+            <div class="row">
+                <div class="col-3 green">
+                    <ul ng-repeat="place in mapdata">
+                        <li ng-click="addMarkers(place.places)">{{place.name}} </li>
+                        <ul ng-repeat="object in place.places">
+                            <li ng-click="addMarkers(object.places)">{{object.name}}</li>
+                            <ul ng-repeat="mark in object.places">
+                                <li ng-style="{'background-color': mark.onmap != 'idle' &&  mark.hasOwnProperty('onmap') ? 'yellow' : ''}" ng-click="addMarker(mark)">
+                                    {{mark.name}}
+                                </li>
+                            </ul>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="col-6">
+                    <div id="mapid"></div>
+                </div>
+                <div class="col-3 red">
+                        <ul ng-repeat="mark in mapdataremoved"  ng-click="returnMarker(mark)" >
+                            <li>{{mark.name}}</li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>

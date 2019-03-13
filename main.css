@@ -1,0 +1,12 @@
+#mapid{
+    height: 900px;
+}
+.green{
+    border: 1px solid green;
+}
+.red{
+    border: 1px solid red;
+}
+ul{
+    font-size: 14px;
+}
